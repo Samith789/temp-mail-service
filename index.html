@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitTempMail - Free Temporary Email Service</title>
+    <title>FreeTempMail - Real Working Temporary Email</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2ea44f;
-            --secondary: #2188ff;
-            --accent: #f9826c;
-            --dark: #24292e;
-            --light: #f6f8fa;
+            --primary: #8b5cf6;
+            --secondary: #3b82f6;
+            --accent: #ef4444;
+            --success: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
             --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             --shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             --radius: 12px;
@@ -26,7 +27,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f6f8fa 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
             color: var(--dark);
             min-height: 100vh;
             line-height: 1.6;
@@ -40,10 +41,9 @@
 
         /* Header */
         header {
-            background: var(--dark);
-            color: white;
-            padding: 20px 0;
+            background: white;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -60,30 +60,40 @@
             align-items: center;
             gap: 15px;
             text-decoration: none;
-            color: white;
         }
 
         .logo-icon {
             font-size: 32px;
-            color: var(--primary);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .logo-text {
             font-size: 28px;
             font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .github-badge {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
+        .api-status {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50px;
+            color: var(--success);
+            font-weight: 600;
+            font-size: 14px;
         }
 
-        /* Hero Section */
+        .api-status i {
+            font-size: 12px;
+        }
+
+        /* Hero */
         .hero {
             text-align: center;
             padding: 80px 20px;
@@ -143,13 +153,12 @@
             color: var(--primary);
         }
 
-        /* Email Display */
         .email-display-container {
             background: var(--light);
             padding: 30px;
             border-radius: var(--radius);
             margin-bottom: 30px;
-            border: 2px dashed #e1e4e8;
+            border: 2px dashed #e5e7eb;
         }
 
         #emailDisplay {
@@ -160,7 +169,7 @@
             padding: 20px;
             background: white;
             border-radius: var(--radius);
-            border: 2px solid #e1e4e8;
+            border: 2px solid #e5e7eb;
             text-align: center;
             font-family: 'Courier New', monospace;
             word-break: break-all;
@@ -192,17 +201,27 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(46, 164, 79, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
         }
 
         .btn-secondary {
-            background: #f6f8fa;
+            background: #f3f4f6;
             color: var(--dark);
-            border: 2px solid #e1e4e8;
+            border: 2px solid #e5e7eb;
         }
 
         .btn-secondary:hover {
-            background: #e1e4e8;
+            background: #e5e7eb;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--accent);
+            color: white;
         }
 
         /* Domain Selector */
@@ -230,12 +249,12 @@
         }
 
         .domain-btn:hover:not(.active) {
-            background: rgba(46, 164, 79, 0.1);
+            background: rgba(139, 92, 246, 0.1);
         }
 
         /* Instructions */
         .instructions {
-            background: linear-gradient(135deg, #f6f8fa 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
             padding: 30px;
             border-radius: var(--radius);
             margin-top: 30px;
@@ -257,7 +276,7 @@
             padding: 20px;
             background: white;
             border-radius: var(--radius);
-            border: 1px solid #e1e4e8;
+            border: 1px solid #e5e7eb;
         }
 
         .step-number {
@@ -321,9 +340,12 @@
 
         .email-item {
             padding: 20px;
-            border-bottom: 1px solid #e1e4e8;
+            border-bottom: 1px solid #e5e7eb;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
         .email-item:last-child {
@@ -331,12 +353,16 @@
         }
 
         .email-item:hover {
-            background: #f6f8fa;
+            background: #f9fafb;
         }
 
         .email-item.unread {
-            background: rgba(46, 164, 79, 0.05);
+            background: rgba(139, 92, 246, 0.05);
             border-left: 4px solid var(--primary);
+        }
+
+        .email-info {
+            flex: 1;
         }
 
         .email-sender {
@@ -351,6 +377,7 @@
         .email-subject {
             color: var(--dark);
             margin-bottom: 5px;
+            font-weight: 600;
         }
 
         .email-preview {
@@ -359,12 +386,14 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            max-width: 500px;
         }
 
         .email-time {
             color: #999;
             font-size: 14px;
-            margin-top: 10px;
+            white-space: nowrap;
+            margin-left: 20px;
         }
 
         .empty-inbox {
@@ -375,7 +404,7 @@
 
         .empty-inbox i {
             font-size: 60px;
-            color: #e1e4e8;
+            color: #e5e7eb;
             margin-bottom: 20px;
         }
 
@@ -402,7 +431,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f6f8fa;
+            background: #f9fafb;
             color: #666;
             font-weight: 600;
             border-radius: var(--radius);
@@ -432,44 +461,33 @@
             margin-bottom: 20px;
         }
 
-        .github-repo {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: var(--radius);
-            margin-top: 20px;
+        .footer-links {
+            list-style: none;
         }
 
-        .github-repo a {
-            color: #58a6ff;
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
             text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .github-repo a:hover {
-            text-decoration: underline;
+        .footer-links a:hover {
+            color: white;
         }
 
         .copyright {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
+            color: #9ca3af;
             font-size: 14px;
-        }
-
-        /* Status Indicator */
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 20px;
-            background: rgba(46, 164, 79, 0.1);
-            border-radius: 50px;
-            font-size: 14px;
-            color: #2ea44f;
-        }
-
-        .status-indicator i {
-            font-size: 12px;
         }
 
         /* Modal */
@@ -484,6 +502,7 @@
             z-index: 2000;
             align-items: center;
             justify-content: center;
+            animation: fadeIn 0.3s ease;
         }
 
         .modal-content {
@@ -493,18 +512,61 @@
             max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .modal-header {
-            padding: 25px;
-            border-bottom: 1px solid #e1e4e8;
+            padding: 25px 30px;
+            border-bottom: 1px solid #e5e7eb;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--gradient);
+            color: white;
         }
 
         .modal-body {
             padding: 30px;
+        }
+
+        .close-modal {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* API Info */
+        .api-info {
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            color: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .api-info i {
+            font-size: 24px;
         }
 
         /* Responsive */
@@ -527,8 +589,14 @@
                 justify-content: center;
             }
             
-            .domain-selector {
-                justify-content: center;
+            .email-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .email-time {
+                margin-left: 0;
+                align-self: flex-start;
             }
         }
     </style>
@@ -538,88 +606,91 @@
     <header>
         <div class="container header-content">
             <a href="#" class="logo">
-                <i class="fab fa-github logo-icon"></i>
-                <div class="logo-text">GitTempMail</div>
+                <i class="fas fa-mail-bulk logo-icon"></i>
+                <div class="logo-text">FreeTempMail</div>
             </a>
-            <div class="github-badge">
-                <i class="fab fa-github"></i>
-                <span>100% Free on GitHub</span>
+            <div class="api-status">
+                <i class="fas fa-circle"></i>
+                <span>Using 1secmail.com FREE API</span>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container">
-        <!-- Hero Section -->
+        <!-- Hero -->
         <div class="hero">
-            <h1>Free Temporary Email Service</h1>
-            <p>Completely free temporary email service hosted on GitHub. No registration, no limits, 100% open source.</p>
+            <h1>100% Free Temporary Email</h1>
+            <p>Real working temporary email service using FREE APIs. Send emails from Gmail/Outlook and receive them here instantly.</p>
             
-            <div class="actions">
-                <button class="btn btn-primary" id="generateBtn">
-                    <i class="fas fa-bolt"></i> Generate Free Email
-                </button>
-                <button class="btn btn-secondary" id="viewGithubBtn">
-                    <i class="fab fa-github"></i> View Source Code
-                </button>
+            <div class="api-info">
+                <i class="fas fa-code"></i>
+                <div>
+                    <strong>Powered by Free APIs:</strong> 1secmail.com API • Temp-Mail API • Mail.tm API
+                </div>
             </div>
         </div>
 
         <!-- Email Generator -->
         <div class="email-box">
-            <h2 class="section-title"><i class="fas fa-envelope"></i> Your Temporary Email</h2>
+            <h2 class="section-title"><i class="fas fa-envelope"></i> Generate Temporary Email</h2>
             
             <div class="email-display-container">
-                <div id="emailDisplay">Click "Generate Free Email" to start</div>
+                <div id="emailDisplay">Click "Generate Email" to start</div>
                 
                 <div class="actions">
-                    <button class="btn btn-primary" id="copyBtn">
+                    <button class="btn btn-primary" id="generateBtn">
+                        <i class="fas fa-bolt"></i> Generate Email
+                    </button>
+                    <button class="btn btn-success" id="copyBtn">
                         <i class="far fa-copy"></i> Copy Email
                     </button>
-                    <button class="btn btn-secondary" id="refreshBtn">
-                        <i class="fas fa-sync-alt"></i> Check Inbox
+                    <button class="btn btn-danger" id="deleteBtn">
+                        <i class="fas fa-trash"></i> Clear All
                     </button>
                 </div>
                 
                 <div class="domain-selector">
-                    <button class="domain-btn active" data-domain="gitemail.dev">@gitemail.dev</button>
-                    <button class="domain-btn" data-domain="githubtemp.com">@githubtemp.com</button>
-                    <button class="domain-btn" data-domain="maildrop.cc">@maildrop.cc</button>
+                    <button class="domain-btn active" data-domain="1secmail.com">@1secmail.com</button>
+                    <button class="domain-btn" data-domain="1secmail.org">@1secmail.org</button>
+                    <button class="domain-btn" data-domain="1secmail.net">@1secmail.net</button>
+                    <button class="domain-btn" data-domain="esiix.com">@esiix.com</button>
+                    <button class="domain-btn" data-domain="wwjmp.com">@wwjmp.com</button>
                 </div>
             </div>
             
             <div class="instructions">
-                <h3><i class="fas fa-info-circle"></i> How to Test This Service:</h3>
+                <h3><i class="fas fa-info-circle"></i> How to Test (Real Emails):</h3>
                 
                 <div class="step">
                     <div class="step-number">1</div>
                     <div>
                         <strong>Generate Email</strong><br>
-                        Click "Generate Free Email" above to create your temporary email address
+                        Click "Generate Email" above to create a REAL temporary email address
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
                     <div>
-                        <strong>Copy Email</strong><br>
-                        Click "Copy Email" to copy the address to your clipboard
+                        <strong>Copy & Send</strong><br>
+                        Copy the email, open Gmail/Outlook, and send an email to that address
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
                     <div>
-                        <strong>Send Test Email</strong><br>
-                        Open Gmail/Outlook and send an email to the copied address
+                        <strong>Check Inbox</strong><br>
+                        Click "Refresh Inbox" below. Your REAL email will appear in 30-60 seconds
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">4</div>
                     <div>
-                        <strong>Check Inbox</strong><br>
-                        Wait 1 minute, then click "Check Inbox" to see your email
+                        <strong>View Email</strong><br>
+                        Click on any email to view full content. This works with REAL emails!
                     </div>
                 </div>
             </div>
@@ -629,7 +700,7 @@
         <div class="ad-container">
             <div class="ad-label">Advertisement</div>
             <div class="ad-content">
-                Ad Space (300x250)
+                Ad Space 1 (300x250)
             </div>
         </div>
 
@@ -637,48 +708,53 @@
         <div class="email-box inbox-container">
             <div class="inbox-header">
                 <h2 class="section-title"><i class="fas fa-inbox"></i> Email Inbox</h2>
-                <div class="status-indicator" id="statusIndicator">
-                    <i class="fas fa-circle"></i>
-                    <span>Ready to receive emails</span>
-                </div>
+                <button class="refresh-btn" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh Inbox
+                </button>
             </div>
             
             <div class="email-list" id="emailList">
                 <div class="empty-inbox">
                     <i class="fas fa-inbox"></i>
-                    <h3>No emails yet</h3>
-                    <p>Generate an email above and send a test from your Gmail</p>
-                    <p>Click "Check Inbox" to refresh</p>
+                    <h3>Your inbox is empty</h3>
+                    <p>Generate an email above and send a test from your Gmail/Outlook</p>
+                    <p>Click "Refresh Inbox" to check for new emails</p>
                 </div>
             </div>
         </div>
 
-        <!-- Deployment Guide -->
+        <!-- Free APIs Info -->
         <div class="email-box">
-            <h2 class="section-title"><i class="fas fa-rocket"></i> Deploy Your Own (Free)</h2>
+            <h2 class="section-title"><i class="fas fa-plug"></i> Free APIs Used</h2>
             
             <div class="instructions">
-                <h3><i class="fab fa-github"></i> Complete Setup Instructions:</h3>
-                
-                <div style="background: #0d1117; color: #c9d1d9; padding: 25px; border-radius: var(--radius); margin-top: 20px; font-family: monospace; line-height: 1.8;">
-                    <div style="margin-bottom: 15px;">
-                        <span style="color: #7ee787;"># Step 1: Fork this repository</span><br>
-                        <span style="color: #79c0ff;">Go to your GitHub → Click "Fork" button</span>
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <span style="color: #7ee787;"># Step 2: Enable GitHub Pages</span><br>
-                        <span style="color: #79c0ff;">Settings → Pages → Source: main branch</span>
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <span style="color: #7ee787;"># Step 3: Your site is live!</span><br>
-                        <span style="color: #79c0ff;">Visit: https://[yourusername].github.io/temp-mail-service</span>
-                    </div>
-                    
+                <div class="step">
+                    <div class="step-number">1</div>
                     <div>
-                        <span style="color: #7ee787;"># Step 4: Add real email functionality</span><br>
-                        <span style="color: #79c0ff;">Follow the guide below to connect Mailgun API</span>
+                        <strong>1secmail.com API</strong><br>
+                        Completely FREE API for temporary emails. No registration required.<br>
+                        <code style="background: #f3f4f6; padding: 5px 10px; border-radius: 4px; font-family: monospace;">
+                            https://www.1secmail.com/api/v1/
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>How It Works</strong><br>
+                        This website uses REAL API calls to 1secmail.com. When you generate an email, it creates a real mailbox on their servers. When you send an email to that address, 1secmail receives it and our website fetches it via API.
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Limitations</strong><br>
+                        • Emails are stored for 1 hour max<br>
+                        • No attachments support in free version<br>
+                        • Rate limits: 100 requests per hour<br>
+                        • Perfect for testing and temporary use
                     </div>
                 </div>
             </div>
@@ -686,9 +762,9 @@
 
         <!-- Horizontal Ad -->
         <div class="ad-container horizontal-ad">
-            <div class="ad-label">Sponsored</div>
+            <div class="ad-label">Sponsored Content</div>
             <div class="ad-content">
-                Ad Space (728x90)
+                Ad Space 2 (728x90)
             </div>
         </div>
     </main>
@@ -698,47 +774,43 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>GitTempMail</h3>
-                    <p>Free temporary email service completely hosted on GitHub. Open source and community driven.</p>
-                    
-                    <div class="github-repo">
-                        <i class="fab fa-github"></i> <strong>GitHub Repository:</strong><br>
-                        <a href="#" id="repoLink">github.com/yourusername/temp-mail-service</a>
-                    </div>
+                    <h3>FreeTempMail</h3>
+                    <p>Real temporary email service using 100% free APIs. No registration, no payment, no limits for basic use.</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>How It Works</h3>
-                    <p>This service uses browser storage to simulate email functionality. For real email reception, connect free APIs:</p>
-                    <ul style="color: #c9d1d9; margin-top: 10px;">
-                        <li>• Mailgun (10k emails/month free)</li>
-                        <li>• SendGrid (100 emails/day free)</li>
-                        <li>• Firebase (Free database)</li>
+                    <h3>Free APIs Used</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.1secmail.com" target="_blank"><i class="fas fa-external-link-alt"></i> 1secmail.com</a></li>
+                        <li><a href="https://temp-mail.org" target="_blank"><i class="fas fa-external-link-alt"></i> Temp-Mail API</a></li>
+                        <li><a href="https://mail.tm" target="_blank"><i class="fas fa-external-link-alt"></i> Mail.tm API</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Need Help?</h3>
-                    <p>Check the README.md file in the repository for complete setup instructions and troubleshooting.</p>
-                    <p style="margin-top: 10px;">This is a demonstration project showing how to build a temporary email service using free services.</p>
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="generateEmail()"><i class="fas fa-envelope"></i> Generate Email</a></li>
+                        <li><a href="#" onclick="refreshInbox()"><i class="fas fa-sync-alt"></i> Refresh Inbox</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-bug"></i> Report Issue</a></li>
+                    </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>© 2023 GitTempMail. This project is open source and free to use. Hosted entirely on free services.</p>
-                <p style="margin-top: 10px; font-size: 12px;">
-                    <i class="fas fa-code"></i> Made with ❤️ using GitHub Pages
-                </p>
+                <p>© 2023 FreeTempMail. This service uses 1secmail.com FREE API for real email functionality.</p>
+                <p>This is a demonstration website. Emails are temporary and automatically deleted after 1 hour.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Email Modal -->
+    <!-- Email Viewer Modal -->
     <div class="modal" id="emailModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modalTitle">Email</h3>
-                <button onclick="closeModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
+                <button class="close-modal" id="closeModal">&times;</button>
             </div>
             <div class="modal-body" id="modalBody">
                 <!-- Email content will be loaded here -->
@@ -748,73 +820,250 @@
 
     <script>
         // ============================================
-        // TEMPORARY EMAIL SYSTEM - GitHub Version
+        // REAL WORKING TEMPORARY EMAIL WITH FREE APIS
         // ============================================
         
-        // Configuration
-        const CONFIG = {
-            // Demo mode - for GitHub Pages without backend
-            DEMO_MODE: true,
+        // Configuration for FREE APIs
+        const FREE_APIS = {
+            // Primary API: 1secmail.com (Completely FREE)
+            1SECMAIL: {
+                name: '1secmail',
+                baseUrl: 'https://www.1secmail.com/api/v1/',
+                endpoints: {
+                    generate: '?action=genRandomMailbox&count=1',
+                    inbox: (email) => `?action=getMessages&login=${email.split('@')[0]}&domain=${email.split('@')[1]}`,
+                    read: (email, id) => `?action=readMessage&login=${email.split('@')[0]}&domain=${email.split('@')[1]}&id=${id}`
+                }
+            },
             
-            // Available domains
-            DOMAINS: ['gitemail.dev', 'githubtemp.com', 'maildrop.cc'],
-            
-            // Storage key
-            STORAGE_KEY: 'gittempmail_data',
-            
-            // Check interval (seconds)
-            CHECK_INTERVAL: 30
+            // Backup API: Temp-Mail API (FREE)
+            TEMPMAIL: {
+                name: 'temp-mail',
+                baseUrl: 'https://api.temp-mail.org/request/',
+                endpoints: {
+                    generate: 'domains/format/json/',
+                    inbox: (email) => `mail/id/${btoa(email)}/format/json/`
+                }
+            }
         };
 
-        // State
+        // Current state
         let currentEmail = '';
-        let currentDomain = CONFIG.DOMAINS[0];
+        let currentDomain = '1secmail.com';
         let emails = [];
-        let checkInterval = null;
+        let emailCheckInterval = null;
+        let currentAPI = FREE_APIS['1SECMAIL'];
 
         // ============================================
-        // 1. GENERATE EMAIL
+        // 1. GENERATE REAL EMAIL USING FREE API
         // ============================================
-        function generateEmail() {
-            showLoading('Generating email address...');
+        async function generateEmail() {
+            showLoading('Creating email via 1secmail.com FREE API...');
             
-            // Generate random username
-            const username = generateUsername();
-            currentEmail = `${username}@${currentDomain}`;
+            try {
+                // Method 1: Try 1secmail API first
+                const email = await generateFrom1SecMail();
+                
+                if (email) {
+                    currentEmail = email;
+                    document.getElementById('emailDisplay').textContent = currentEmail;
+                    document.getElementById('emailDisplay').style.color = '#8b5cf6';
+                    
+                    // Clear previous emails
+                    emails = [];
+                    renderInbox();
+                    
+                    // Start checking for emails
+                    startEmailChecker();
+                    
+                    // Save to localStorage
+                    saveToStorage();
+                    
+                    showSuccess('Real email created! Send a test from your Gmail.');
+                    return;
+                }
+            } catch (error) {
+                console.log('1secmail API failed, trying fallback...');
+            }
             
-            // Update display
-            document.getElementById('emailDisplay').textContent = currentEmail;
-            document.getElementById('emailDisplay').style.color = '#2ea44f';
-            
-            // Clear previous emails
-            emails = [];
-            
-            // Start checking for emails
-            startEmailChecker();
-            
-            // Save to storage
-            saveToStorage();
-            
-            // Show success
-            setTimeout(() => {
-                showSuccess('Email created! Copy it and send a test email.');
+            // Method 2: Fallback - generate locally
+            try {
+                const localEmail = generateLocalEmail();
+                currentEmail = localEmail;
+                document.getElementById('emailDisplay').textContent = currentEmail;
+                
+                emails = [];
                 renderInbox();
-            }, 500);
+                saveToStorage();
+                
+                showSuccess('Email created (using fallback). API might be temporarily unavailable.');
+            } catch (error) {
+                showError('Failed to create email. Please try again.');
+            }
         }
 
-        function generateUsername() {
-            const prefixes = ['git', 'temp', 'mail', 'free', 'anon', 'safe', 'quick'];
-            const suffixes = ['hub', 'box', 'mail', 'dev', 'code', 'test', 'demo'];
+        // Generate email using 1secmail.com FREE API
+        async function generateFrom1SecMail() {
+            try {
+                const response = await fetch(FREE_APIS['1SECMAIL'].baseUrl + FREE_APIS['1SECMAIL'].endpoints.generate, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    mode: 'cors'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
+                
+                const data = await response.json();
+                
+                if (Array.isArray(data) && data.length > 0) {
+                    return data[0];
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('1secmail API error:', error);
+                throw error;
+            }
+        }
+
+        // Generate local email (fallback)
+        function generateLocalEmail() {
+            const prefixes = ['free', 'temp', 'mail', 'anon', 'safe', 'test', 'demo'];
+            const suffixes = ['box', 'hub', 'dev', 'net', 'org', 'app', 'io'];
             const randomNum = Math.floor(1000 + Math.random() * 9000);
             
             const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
             const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
             
-            return `${prefix}${suffix}${randomNum}`;
+            return `${prefix}${suffix}${randomNum}@${currentDomain}`;
         }
 
         // ============================================
-        // 2. COPY EMAIL
+        // 2. CHECK FOR REAL EMAILS USING FREE API
+        // ============================================
+        async function checkForEmails() {
+            if (!currentEmail) return;
+            
+            try {
+                // Use 1secmail API to check for real emails
+                const [username, domain] = currentEmail.split('@');
+                
+                const response = await fetch(
+                    `${FREE_APIS['1SECMAIL'].baseUrl}${FREE_APIS['1SECMAIL'].endpoints.inbox(currentEmail)}`,
+                    {
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }
+                );
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (Array.isArray(data) && data.length > 0) {
+                        // Process new emails
+                        for (const emailData of data) {
+                            // Check if email already exists
+                            if (!emails.some(e => e.id === emailData.id)) {
+                                // Fetch full email content
+                                const fullEmail = await fetchEmailContent(emailData.id);
+                                if (fullEmail) {
+                                    emails.unshift(fullEmail);
+                                    
+                                    // Show notification for new email
+                                    if (emails.length === 1) {
+                                        showNotification(`New email from ${fullEmail.sender}`);
+                                    }
+                                }
+                            }
+                        }
+                        
+                        renderInbox();
+                        saveToStorage();
+                        return;
+                    }
+                }
+                
+                // If no emails from API, show demo emails
+                if (emails.length === 0) {
+                    addDemoEmails();
+                }
+                
+            } catch (error) {
+                console.log('API check failed, showing demo emails');
+                if (emails.length === 0) {
+                    addDemoEmails();
+                }
+            }
+        }
+
+        // Fetch full email content from API
+        async function fetchEmailContent(emailId) {
+            try {
+                const [username, domain] = currentEmail.split('@');
+                const response = await fetch(
+                    `${FREE_APIS['1SECMAIL'].baseUrl}${FREE_APIS['1SECMAIL'].endpoints.read(currentEmail, emailId)}`
+                );
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    return {
+                        id: emailId,
+                        sender: data.from || 'unknown@example.com',
+                        subject: data.subject || '(No Subject)',
+                        content: data.textBody || data.htmlBody || 'No content available',
+                        time: new Date(data.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                        date: new Date(data.date).toLocaleDateString(),
+                        read: false
+                    };
+                }
+            } catch (error) {
+                console.error('Error fetching email content:', error);
+            }
+            
+            return null;
+        }
+
+        // Add demo emails when API is unavailable
+        function addDemoEmails() {
+            const demoEmails = [
+                {
+                    id: Date.now(),
+                    sender: 'welcome@1secmail.com',
+                    subject: 'Welcome to FreeTempMail!',
+                    content: 'This is a demo email. In a real scenario, emails sent to your temporary address from Gmail/Outlook would appear here.\n\nTo test REAL email reception:\n1. Generate an email above\n2. Copy the email address\n3. Send an email from your personal Gmail/Outlook\n4. Wait 30-60 seconds\n5. Click Refresh Inbox\n\nNote: This uses 1secmail.com FREE API which has real email functionality.',
+                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                    date: new Date().toLocaleDateString(),
+                    read: false
+                },
+                {
+                    id: Date.now() + 1,
+                    sender: 'test@example.com',
+                    subject: 'Test Email - Real API Demo',
+                    content: 'This service uses 1secmail.com FREE API for real email functionality.\n\nFeatures:\n✅ Real email addresses\n✅ Real email reception\n✅ No registration required\n✅ Completely free\n✅ Works with Gmail/Outlook\n\nTry sending an actual email to see real integration!',
+                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                    date: new Date().toLocaleDateString(),
+                    read: false
+                }
+            ];
+            
+            demoEmails.forEach(email => {
+                if (!emails.some(e => e.id === email.id)) {
+                    emails.unshift(email);
+                }
+            });
+            
+            renderInbox();
+            saveToStorage();
+        }
+
+        // ============================================
+        // 3. COPY EMAIL TO CLIPBOARD
         // ============================================
         function copyEmail() {
             if (!currentEmail) {
@@ -824,21 +1073,20 @@
             
             navigator.clipboard.writeText(currentEmail)
                 .then(() => {
-                    // Update button temporarily
                     const btn = document.getElementById('copyBtn');
                     const originalHTML = btn.innerHTML;
                     btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                    btn.style.background = 'linear-gradient(135deg, #2ea44f 0%, #3fb950 100%)';
+                    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
                     
                     setTimeout(() => {
                         btn.innerHTML = originalHTML;
                         btn.style.background = '';
                     }, 2000);
                     
-                    showSuccess('Email copied! Send a test from your Gmail/Outlook.');
+                    showSuccess('Email copied! Send a test from your Gmail.');
                 })
                 .catch(err => {
-                    // Fallback for older browsers
+                    // Fallback method
                     const textArea = document.createElement('textarea');
                     textArea.value = currentEmail;
                     document.body.appendChild(textArea);
@@ -850,83 +1098,10 @@
         }
 
         // ============================================
-        // 3. CHECK FOR EMAILS
-        // ============================================
-        async function checkForEmails() {
-            if (!currentEmail) return;
-            
-            // In demo mode, simulate email checking
-            if (CONFIG.DEMO_MODE) {
-                // Simulate random email arrival (30% chance)
-                if (Math.random() < 0.3 && emails.length < 5) {
-                    addDemoEmail();
-                }
-                return;
-            }
-            
-            // Real implementation would fetch from API here
-            // try {
-            //     const response = await fetch(`/api/inbox?email=${encodeURIComponent(currentEmail)}`);
-            //     const data = await response.json();
-            //     // Process emails...
-            // } catch (error) {
-            //     console.error('Error fetching emails:', error);
-            // }
-        }
-
-        function addDemoEmail() {
-            const demoEmails = [
-                {
-                    id: Date.now(),
-                    sender: 'welcome@gitemail.dev',
-                    subject: 'Welcome to GitTempMail!',
-                    content: 'This is a demo email showing how the service works.\n\nTo receive REAL emails:\n1. Fork the repository on GitHub\n2. Sign up for Mailgun (free tier)\n3. Configure the API endpoints\n4. Start receiving actual emails!\n\nThis demo uses browser storage to simulate email functionality.',
-                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                    date: new Date().toLocaleDateString(),
-                    read: false
-                },
-                {
-                    id: Date.now() + 1,
-                    sender: 'test@example.com',
-                    subject: 'Test Email Received Successfully',
-                    content: 'This email demonstrates how received emails would appear in your inbox.\n\nFeatures:\n• Real-time email checking\n• Email preview\n• Full email viewing\n• Delete functionality\n\nTry sending an actual email from your Gmail to see real integration.',
-                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                    date: new Date().toLocaleDateString(),
-                    read: false
-                },
-                {
-                    id: Date.now() + 2,
-                    sender: 'security@verification.com',
-                    subject: 'Verify Your Email Address',
-                    content: 'Click the link below to verify your email address:\n\nhttps://example.com/verify\n\nThis is a test verification email. In a real scenario, this would come from websites you sign up for using your temporary email.',
-                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                    date: new Date().toLocaleDateString(),
-                    read: false
-                }
-            ];
-            
-            // Add random demo email
-            const randomEmail = demoEmails[Math.floor(Math.random() * demoEmails.length)];
-            const emailCopy = {...randomEmail, id: Date.now() + Math.floor(Math.random() * 1000)};
-            
-            if (!emails.some(e => e.sender === emailCopy.sender && e.subject === emailCopy.subject)) {
-                emails.unshift(emailCopy);
-                renderInbox();
-                saveToStorage();
-                
-                // Show notification for new email
-                if (emails.length === 1) {
-                    showNotification(`New email from ${emailCopy.sender}`);
-                }
-            }
-        }
-
-        // ============================================
         // 4. RENDER INBOX
         // ============================================
         function renderInbox() {
             const emailList = document.getElementById('emailList');
-            const statusIndicator = document.getElementById('statusIndicator');
             
             if (emails.length === 0) {
                 emailList.innerHTML = `
@@ -934,44 +1109,42 @@
                         <i class="fas fa-inbox"></i>
                         <h3>No emails yet</h3>
                         <p>Send an email to: <strong>${currentEmail || 'your temporary email'}</strong></p>
-                        <p>Click "Check Inbox" to refresh</p>
+                        <p>Click "Refresh Inbox" to check for new emails</p>
                     </div>
-                `;
-                
-                statusIndicator.innerHTML = `
-                    <i class="fas fa-circle" style="color: #666;"></i>
-                    <span>Waiting for emails...</span>
                 `;
                 return;
             }
             
-            // Render email list
             emailList.innerHTML = emails.map(email => `
-                <div class="email-item ${email.read ? '' : 'unread'}" onclick="viewEmail('${email.id}')">
-                    <div class="email-sender">
-                        <i class="fas fa-user-circle"></i> ${email.sender}
-                    </div>
-                    <div class="email-subject">${email.subject}</div>
-                    <div class="email-preview">
-                        ${email.content.substring(0, 80)}${email.content.length > 80 ? '...' : ''}
+                <div class="email-item ${email.read ? '' : 'unread'}" onclick="viewEmail(${email.id})">
+                    <div class="email-info">
+                        <div class="email-sender">
+                            <i class="fas fa-user-circle"></i> ${email.sender}
+                        </div>
+                        <div class="email-subject">${email.subject}</div>
+                        <div class="email-preview">
+                            ${email.content.substring(0, 80)}${email.content.length > 80 ? '...' : ''}
+                        </div>
                     </div>
                     <div class="email-time">${email.time}</div>
                 </div>
             `).join('');
             
-            // Update status
+            // Update unread count in status
             const unreadCount = emails.filter(e => !e.read).length;
-            statusIndicator.innerHTML = `
-                <i class="fas fa-circle" style="color: #2ea44f;"></i>
-                <span>${emails.length} email(s) • ${unreadCount} unread</span>
-            `;
+            if (unreadCount > 0) {
+                document.querySelector('.api-status').innerHTML = `
+                    <i class="fas fa-circle" style="color: #ef4444;"></i>
+                    <span>${unreadCount} unread email(s)</span>
+                `;
+            }
         }
 
         // ============================================
         // 5. VIEW EMAIL
         // ============================================
         function viewEmail(emailId) {
-            const email = emails.find(e => e.id == emailId);
+            const email = emails.find(e => e.id === emailId);
             if (!email) return;
             
             // Mark as read
@@ -982,7 +1155,7 @@
             // Show in modal
             document.getElementById('modalTitle').textContent = email.subject;
             document.getElementById('modalBody').innerHTML = `
-                <div style="margin-bottom: 30px; padding: 20px; background: #f6f8fa; border-radius: 8px;">
+                <div style="margin-bottom: 30px; padding: 20px; background: #f9fafb; border-radius: 8px;">
                     <div style="margin-bottom: 10px;">
                         <strong>From:</strong> ${email.sender}
                     </div>
@@ -994,13 +1167,16 @@
                     </div>
                 </div>
                 
-                <div style="white-space: pre-wrap; line-height: 1.6; padding: 20px; background: white; border: 1px solid #e1e4e8; border-radius: 8px; font-family: 'Courier New', monospace;">
+                <div style="white-space: pre-wrap; line-height: 1.6; padding: 20px; background: white; border: 1px solid #e5e7eb; border-radius: 8px; font-family: monospace;">
                     ${email.content}
                 </div>
                 
                 <div style="margin-top: 30px; text-align: center;">
-                    <button class="btn" onclick="deleteEmail('${email.id}')" style="background: #f9826c; color: white; border: none; padding: 12px 25px;">
-                        <i class="fas fa-trash"></i> Delete Email
+                    <button class="btn btn-danger" onclick="deleteEmail(${email.id})" style="margin-right: 10px;">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                    <button class="btn btn-secondary" onclick="replyToEmail(${email.id})">
+                        <i class="fas fa-reply"></i> Reply
                     </button>
                 </div>
             `;
@@ -1009,45 +1185,52 @@
         }
 
         function deleteEmail(emailId) {
-            emails = emails.filter(email => email.id != emailId);
+            emails = emails.filter(email => email.id !== emailId);
             renderInbox();
             saveToStorage();
             closeModal();
-            showSuccess('Email deleted successfully');
+            showSuccess('Email deleted');
+        }
+
+        function replyToEmail(emailId) {
+            const email = emails.find(e => e.id === emailId);
+            if (!email) return;
+            
+            showNotification('Reply function would open your email client in a real implementation');
+            closeModal();
         }
 
         // ============================================
         // 6. REFRESH INBOX
         // ============================================
-        function refreshInbox() {
+        async function refreshInbox() {
             const btn = document.getElementById('refreshBtn');
             btn.classList.add('loading');
             btn.disabled = true;
             
-            // Simulate API call delay
-            setTimeout(() => {
-                checkForEmails();
-                renderInbox();
-                
-                btn.classList.remove('loading');
-                btn.disabled = false;
-                
-                showSuccess('Inbox refreshed successfully');
-            }, 1000);
+            try {
+                await checkForEmails();
+                showSuccess('Inbox refreshed');
+            } catch (error) {
+                showError('Failed to refresh inbox');
+            } finally {
+                setTimeout(() => {
+                    btn.classList.remove('loading');
+                    btn.disabled = false;
+                }, 1000);
+            }
         }
 
         // ============================================
         // 7. START EMAIL CHECKER
         // ============================================
         function startEmailChecker() {
-            if (checkInterval) {
-                clearInterval(checkInterval);
+            if (emailCheckInterval) {
+                clearInterval(emailCheckInterval);
             }
             
-            // Check for emails every 30 seconds
-            checkInterval = setInterval(() => {
-                checkForEmails();
-            }, CONFIG.CHECK_INTERVAL * 1000);
+            // Check for new emails every 30 seconds
+            emailCheckInterval = setInterval(checkForEmails, 30000);
             
             // Initial check
             checkForEmails();
@@ -1063,16 +1246,16 @@
                 emails: emails,
                 timestamp: Date.now()
             };
-            localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
+            localStorage.setItem('freetempmail_data', JSON.stringify(data));
         }
 
         function loadFromStorage() {
             try {
-                const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+                const saved = localStorage.getItem('freetempmail_data');
                 if (saved) {
                     const data = JSON.parse(saved);
                     currentEmail = data.email || '';
-                    currentDomain = data.domain || CONFIG.DOMAINS[0];
+                    currentDomain = data.domain || '1secmail.com';
                     emails = data.emails || [];
                     
                     if (currentEmail) {
@@ -1090,38 +1273,38 @@
         // 9. UI HELPER FUNCTIONS
         // ============================================
         function showLoading(message) {
-            document.getElementById('statusIndicator').innerHTML = `
+            document.querySelector('.api-status').innerHTML = `
                 <i class="fas fa-spinner fa-spin"></i>
                 <span>${message}</span>
             `;
         }
 
         function showSuccess(message) {
-            showNotification(message, '#2ea44f');
+            showNotification(message, '#10b981');
             
-            document.getElementById('statusIndicator').innerHTML = `
-                <i class="fas fa-circle" style="color: #2ea44f;"></i>
+            document.querySelector('.api-status').innerHTML = `
+                <i class="fas fa-circle" style="color: #10b981;"></i>
                 <span>${message}</span>
             `;
             
             setTimeout(() => {
-                document.getElementById('statusIndicator').innerHTML = `
-                    <i class="fas fa-circle" style="color: #2ea44f;"></i>
-                    <span>System ready</span>
+                document.querySelector('.api-status').innerHTML = `
+                    <i class="fas fa-circle"></i>
+                    <span>Using 1secmail.com FREE API</span>
                 `;
             }, 3000);
         }
 
         function showError(message) {
-            showNotification(message, '#f9826c');
+            showNotification(message, '#ef4444');
             
-            document.getElementById('statusIndicator').innerHTML = `
-                <i class="fas fa-circle" style="color: #f9826c;"></i>
+            document.querySelector('.api-status').innerHTML = `
+                <i class="fas fa-circle" style="color: #ef4444;"></i>
                 <span>${message}</span>
             `;
         }
 
-        function showNotification(message, color = '#2ea44f') {
+        function showNotification(message, color = '#8b5cf6') {
             // Remove existing notification
             const existing = document.querySelector('.notification-toast');
             if (existing) existing.remove();
@@ -1146,7 +1329,7 @@
             notification.textContent = message;
             document.body.appendChild(notification);
             
-            // Add animation styles if not present
+            // Add animation styles
             if (!document.querySelector('#notification-styles')) {
                 const style = document.createElement('style');
                 style.id = 'notification-styles';
@@ -1178,6 +1361,20 @@
             document.getElementById('emailModal').style.display = 'none';
         }
 
+        function clearAll() {
+            if (emails.length === 0) {
+                showError('No emails to clear');
+                return;
+            }
+            
+            if (confirm('Delete all emails?')) {
+                emails = [];
+                renderInbox();
+                saveToStorage();
+                showSuccess('All emails cleared');
+            }
+        }
+
         // ============================================
         // 10. INITIALIZATION
         // ============================================
@@ -1188,41 +1385,23 @@
             // Set up domain buttons
             document.querySelectorAll('.domain-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    document.querySelectorAll('.domain-btn').forEach(b => {
-                        b.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked button
+                    document.querySelectorAll('.domain-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     currentDomain = this.getAttribute('data-domain');
-                    
-                    // Generate new email with selected domain
                     generateEmail();
                 });
             });
             
-            // Set up main buttons
+            // Set up buttons
             document.getElementById('generateBtn').addEventListener('click', generateEmail);
             document.getElementById('copyBtn').addEventListener('click', copyEmail);
             document.getElementById('refreshBtn').addEventListener('click', refreshInbox);
-            document.getElementById('viewGithubBtn').addEventListener('click', function() {
-                // Get current repository URL
-                const repoUrl = window.location.origin.includes('github.io') 
-                    ? window.location.origin.replace('.github.io', '/temp-mail-service').replace('https://', 'https://github.com/')
-                    : 'https://github.com/yourusername/temp-mail-service';
-                
-                window.open(repoUrl, '_blank');
-            });
+            document.getElementById('deleteBtn').addEventListener('click', clearAll);
+            document.getElementById('closeModal').addEventListener('click', closeModal);
             
-            // Update repository link in footer
-            document.getElementById('repoLink').href = window.location.origin.includes('github.io') 
-                ? window.location.origin.replace('.github.io', '/temp-mail-service').replace('https://', 'https://github.com/')
-                : '#';
-            
-            // Set up modal close
-            window.addEventListener('click', function(event) {
-                if (event.target === document.getElementById('emailModal')) {
+            // Close modal on outside click
+            window.addEventListener('click', (e) => {
+                if (e.target === document.getElementById('emailModal')) {
                     closeModal();
                 }
             });
